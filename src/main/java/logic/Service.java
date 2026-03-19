@@ -1,31 +1,66 @@
 package logic;
 
-import data.AdminRepository;
+import data.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import data.EmpresasRepository;
 
 @org.springframework.stereotype.Service
 
 public class Service {
     @Autowired
-    private EmpresasRepository Empresas;
-    private AdminRepository Admin;
-
+    private EmpresasRepository empresas;
+    @Autowired
+    private AdminRepository admins;
+    @Autowired
+    private PuestoRepository puestos;
+    @Autowired
+    private CaracteristicaRepository carecteristica;
+    @Autowired
+    private OferenteRepository oferentes;
     public Iterable<Empresa> empresasAll() {
-        return Empresas.findAll();
+        return empresas.findAll();
     }
-    public Iterable<Admin> adminsAll() { return Admin.findAll();}
+    public Iterable<Admin> adminsAll() { return admins.findAll();}
+    public Iterable<Puesto> puestosAll() { return puestos.findAll();}
+    public Iterable<Caracteristica> carecteristicasAll() { return carecteristica.findAll();}
+    public Iterable<Oferente> oferentesAll() { return oferentes.findAll();}
 
     public void empresasAdd(Empresa empresa) {
-        if(Empresas.existsById(empresa.getId())) {
+        if(empresas.existsById(empresa.getId())) {
             throw new IllegalArgumentException("La empresa ya existe");
         }
-        Empresas.save(empresa);
+        empresas.save(empresa);
+    }
+    public Empresa findEmpresaByCorreo(String correo) {
+        return empresas.findByCorreo(correo);
     }
     public void adminsAdd(Admin admin) {
-        if(Admin.existsById(admin.getId())) {
+        if(admins.existsById(admin.getId())) {
             throw new IllegalArgumentException("El admin ya existe");
         }
-        Admin.save(admin);
+        admins.save(admin);
+    }
+    public Admin findAdminById(String id) {
+        return admins.findById(id).orElse(null);
+    }
+    public void puestosAdd(Puesto puesto) {
+        if(puestos.existsById(puesto.getId())) {
+            throw new IllegalArgumentException("El puesto ya existe");
+        }
+        puestos.save(puesto);
+    }
+    public void carecteristicasAdd(Caracteristica caracteristica) {
+        if(carecteristica.existsById(caracteristica.getCaracteristica_id())) {
+            throw new IllegalArgumentException("La caracteristica ya existe");
+        }
+        carecteristica.save(caracteristica);
+    }
+    public void oferentesAdd(Oferente oferente) {
+        if(oferentes.existsById(oferente.getId())) {
+            throw new IllegalArgumentException("El oferente ya existe");
+        }
+        oferentes.save(oferente);
+    }
+    public Oferente findOferenteByCorreo(String correo) {
+        return oferentes.findByCorreo(correo);
     }
 }

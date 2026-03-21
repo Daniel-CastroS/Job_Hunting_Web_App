@@ -8,11 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class Service {
     @Autowired
     private EmpresasRepository empresas;
+    @Autowired
     private AdminRepository admins;
+    @Autowired
     private PuestoRepository puestos;
+    @Autowired
     private CaracteristicaRepository carecteristica;
+    @Autowired
     private OferenteRepository oferentes;
-
     public Iterable<Empresa> empresasAll() {
         return empresas.findAll();
     }
@@ -27,11 +30,17 @@ public class Service {
         }
         empresas.save(empresa);
     }
+    public Empresa findEmpresaByCorreo(String correo) {
+        return empresas.findByCorreo(correo);
+    }
     public void adminsAdd(Admin admin) {
         if(admins.existsById(admin.getId())) {
             throw new IllegalArgumentException("El admin ya existe");
         }
         admins.save(admin);
+    }
+    public Admin findAdminById(String id) {
+        return admins.findById(id).orElse(null);
     }
     public void puestosAdd(Puesto puesto) {
         if(puestos.existsById(puesto.getId())) {
@@ -50,5 +59,8 @@ public class Service {
             throw new IllegalArgumentException("El oferente ya existe");
         }
         oferentes.save(oferente);
+    }
+    public Oferente findOferenteByCorreo(String correo) {
+        return oferentes.findByCorreo(correo);
     }
 }

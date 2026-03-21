@@ -18,6 +18,11 @@ public class Puesto {
 
     @jakarta.persistence.Id
     private String id;
+
+    public String getId() {
+        return id;
+    }
+
     @ManyToOne
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;

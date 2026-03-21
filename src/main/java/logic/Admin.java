@@ -18,6 +18,13 @@ public class Admin {
     private String nombre;
     private String descripcion;
     private int telefono;
-    //Hola
+    private String clave;
+
+    public String getNombre() { return nombre; }
+
+    public String getClave() { return clave; }
+    public String getId() {
+        return id;
+    }
 }
 //Viva José José

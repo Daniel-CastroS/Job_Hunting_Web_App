@@ -16,6 +16,11 @@ import lombok.Setter;
 public class Caracteristica {
     @jakarta.persistence.Id
     private String caracteristica_id;
+
+    public String getCaracteristica_id() {
+        return caracteristica_id;
+    }
+
     @ManyToOne
     @JoinColumn(name = "caracteristica_id")
     private Caracteristica idPadre;

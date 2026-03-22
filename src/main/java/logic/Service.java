@@ -49,7 +49,7 @@ public class Service {
         puestos.save(puesto);
     }
     public void carecteristicasAdd(Caracteristica caracteristica) {
-        if(carecteristica.existsById(caracteristica.getCaracteristica_id())) {
+        if(carecteristica.existsById(caracteristica.getCaracteristicaId())) {
             throw new IllegalArgumentException("La caracteristica ya existe");
         }
         carecteristica.save(caracteristica);

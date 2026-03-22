@@ -53,4 +53,8 @@ public class Oferente {
     @Column(name = "estado", length = 45)
     private String estado;
 
+    public boolean isAprobado(){
+        return this.estado.equals("aprobado");
+    }
+
 }

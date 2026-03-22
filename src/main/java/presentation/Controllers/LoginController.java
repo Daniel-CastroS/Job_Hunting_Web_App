@@ -35,7 +35,7 @@ public class LoginController {
 
             case "admin" -> {
                 Admin admin = service.findAdminById(usuario);
-                if (admin == null || !admin.getClave().equals(clave)) {
+                if (admin == null || !admin.getContrasenna().equals(clave)) {
                     return "redirect:/login?error";
                 }
                 session.setAttribute("usuarioRol",  "admin");
@@ -46,7 +46,7 @@ public class LoginController {
 
             case "empresa" -> {
                 Empresa empresa = service.findEmpresaByCorreo(usuario);
-                if (empresa == null || !empresa.getClave().equals(clave)) {
+                if (empresa == null || !empresa.getContrasenna().equals(clave)) {
                     return "redirect:/login?error";
                 }
                 if (!empresa.isAprobada()) {
@@ -60,7 +60,7 @@ public class LoginController {
 
             case "oferente" -> {
                 Oferente oferente = service.findOferenteByCorreo(usuario);
-                if (oferente == null || !oferente.getClave().equals(clave)) {
+                if (oferente == null || !oferente.getContrasenna().equals(clave)) {
                     return "redirect:/login?error";
                 }
                 if (!oferente.isAprobado()) {

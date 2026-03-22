@@ -45,4 +45,8 @@ public class Empresa {
     @Column(name = "estado", length = 45)
     private String estado;
 
+    public boolean isAprobada(){
+        return this.estado.equals("aprobada");
+    }
+
 }
